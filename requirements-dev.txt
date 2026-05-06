@@ -1,0 +1,30 @@
+# Dépendances de développement pour le projet examenGit_en_ligne
+
+# Inclure les dépendances de base
+-r requirements.txt
+
+# Outils de développement avancés
+pre-commit>=2.20.0
+isort>=5.10.0
+bandit>=1.7.0
+safety>=2.3.0
+
+# Pour la couverture de test
+coverage>=7.0.0
+pytest-mock>=3.10.0
+pytest-xdist>=3.0.0
+
+# Pour la documentation
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+sphinx-autodoc-typehints>=1.19.0
+sphinxcontrib-napoleon>=0.7
+
+# Pour le build et la distribution
+build>=0.8.0
+twine>=4.0.0
+wheel>=0.38.0
+
+# Pour le profiling (optionnel)
+memory-profiler>=0.60.0
+line-profiler>=4.0.0

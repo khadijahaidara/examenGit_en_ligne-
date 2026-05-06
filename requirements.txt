@@ -1,0 +1,18 @@
+# Dépendances principales pour le projet examenGit_en_ligne
+
+# Pour les tests
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Pour la documentation (optionnel)
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+sphinx-autodoc-typehints>=1.19.0
+
+# Pour le développement (optionnel)
+black>=22.0.0
+flake8>=5.0.0
+mypy>=1.0.0
+
+# Pour l'interface graphique (généralement inclus avec Python)
+# tkinter  # Non nécessaire à installer explicitement
