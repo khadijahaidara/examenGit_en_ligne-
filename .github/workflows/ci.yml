@@ -1,0 +1,92 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
+    
+    - name: Run unit tests
+      run: |
+        python -m pytest test_mesfonctions.py -v
+    
+    - name: Test game import
+      run: |
+        python -c "import jeu; print('Game import successful')"
+    
+    - name: Test functions import
+      run: |
+        python -c "import mesfonctions; print('Functions import successful')"
+    
+    - name: Run specific function tests
+      run: |
+        python -c "
+import mesfonctions
+# Test some functions
+assert mesfonctions.factorielle(5) == 120
+assert mesfonctions.est_premier(7) == True
+assert mesfonctions.inverser_chaine('hello') == 'olleh'
+print('All function tests passed!')
+"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
+    
+    - name: Lint with flake8
+      run: |
+        flake8 mesfonctions.py --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 jeu.py --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 test_mesfonctions.py --count --select=E9,F63,F7,F82 --show-source --statistics
+
+  game-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    
+    - name: Test game class instantiation
+      run: |
+        python -c "
+import jeu
+game = jeu.JeuDevinette()
+print('Game class instantiated successfully')
+assert hasattr(game, 'score')
+assert hasattr(game, 'parties_jouees')
+print('Game attributes verified')
+"
