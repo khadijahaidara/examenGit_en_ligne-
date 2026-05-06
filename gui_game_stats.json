@@ -1,0 +1,15 @@
+{
+  "total_games": 1,
+  "games_won": 1,
+  "total_score": 30,
+  "best_score": 30,
+  "average_attempts": 8.0,
+  "last_played": "2026-05-06T19:05:07.789975",
+  "difficulty_stats": {
+    "Facile": {
+      "games": 1,
+      "wins": 1
+    }
+  },
+  "total_attempts": 8
+}
