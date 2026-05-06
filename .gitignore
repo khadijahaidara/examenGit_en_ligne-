@@ -1,0 +1,11 @@
+# Ignorer tous les fichiers Word
+*.docx
+
+# Ignorer les fichiers temporaires
+*~
+*.tmp
+*.temp
+
+# Ignorer les dossiers système
+.DS_Store
+Thumbs.db
